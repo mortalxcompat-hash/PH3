@@ -1834,8 +1834,9 @@ async function saveMedFromForm() {
         const imgFile = document.getElementById('medImage')?.files[0];
         const saveOrUpdate = async (data) => {
             if (isEditing) {
-                delete data.createdAt;
                 data.id = currentMed.id;
+                data.type = currentMed.type;
+                delete data.createdAt;
                 
                 const duplicate = await isDuplicateMedicine(data, currentMed.id);
                 if (duplicate) {
@@ -1856,7 +1857,6 @@ async function saveMedFromForm() {
             } else {
                 for (let expiry of expiries) {
                     const newMed = { ...data, expiry };
-                    
                     const duplicate = await isDuplicateMedicine(newMed);
                     if (duplicate) {
                         hideLoading();
@@ -1865,7 +1865,6 @@ async function saveMedFromForm() {
                             : `Cannot add. Duplicate medicine exists: ${duplicate.name} (Expiry: ${duplicate.expiry})`);
                         return;
                     }
-                    
                     await db.meds.add(newMed);
                     await addMedicineToGeneralIfNotExists(newMed);
                 }
