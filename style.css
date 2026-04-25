@@ -14,12 +14,6 @@
     --radius: 16px;
 }
 body.dark {
-    --primary: #3b8db0;
-    --primary-dark: #2c6d8a;
-    --primary-light: #5aa9cc;
-    --danger: #e76f51;
-    --warning: #f4a261;
-    --success: #2a9d8f;
     --bg: #121212;
     --card-bg: #1e1e1e;
     --text: #e0e0e0;
@@ -95,7 +89,7 @@ body {
 .back-header-btn {
     font-size: 24px;
     font-weight: bold;
-    order: 0; /* ensure it's on the right in RTL */
+    order: 0;
 }
 #pageContent {
     flex: 1;
