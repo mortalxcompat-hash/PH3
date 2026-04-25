@@ -2624,10 +2624,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateAllText();
     if (Notification.permission !== 'granted' && Notification.permission !== 'denied') Notification.requestPermission();
 
-    const notifBtn = document.getElementById('notifBtn');
+    const notifBtn = document.getElementById('notifBtn'); // متغير جديد
     const settingsBtn = document.getElementById('settingsHeaderBtn');
     const headerBackBtn = document.getElementById('headerBackBtn');
     const appTitle = document.getElementById('appTitle');
+    
     if (notifBtn) notifBtn.onclick = () => switchPage('inbox');
     if (settingsBtn) settingsBtn.onclick = () => openSettingsModal();
     if (headerBackBtn) headerBackBtn.onclick = () => window.handleBackButton();
@@ -2682,4 +2683,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     switchPage('home');
     checkAndSendExpiryNotifications();
 });
-
