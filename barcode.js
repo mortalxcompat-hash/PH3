@@ -19,6 +19,17 @@ function isDuplicate(code) {
     return false;
 }
 
+async function ensureCameraPermission() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        stream.getTracks().forEach(track => track.stop());
+        return true;
+    } catch (err) {
+        console.warn("Camera permission denied or error:", err);
+        return false;
+    }
+}
+
 async function startCamera(videoElement) {
     if (stream) {
         stream.getTracks().forEach(track => track.stop());
@@ -189,6 +200,12 @@ async function switchToQuagga(videoElement, onSuccess, resultDiv) {
 }
 
 async function startBarcodeScanner(targetInputId) {
+    const hasPerm = await ensureCameraPermission();
+    if (!hasPerm) {
+        alert("لا يمكن الوصول إلى الكاميرا. الرجاء منح الإذن في إعدادات الجهاز.");
+        return;
+    }
+    
     currentTargetInputId = targetInputId;
     const modal = document.getElementById('barcodeScannerModal');
     const video = document.getElementById('scannerVideo');
@@ -222,6 +239,12 @@ async function startBarcodeScanner(targetInputId) {
 }
 
 async function startScannerForSearch() {
+    const hasPerm = await ensureCameraPermission();
+    if (!hasPerm) {
+        alert("لا يمكن الوصول إلى الكاميرا. الرجاء منح الإذن في إعدادات الجهاز.");
+        return;
+    }
+    
     const modal = document.getElementById('barcodeScannerModal');
     const video = document.getElementById('scannerVideo');
     const resultDiv = document.getElementById('scannerResult');
