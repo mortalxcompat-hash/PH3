@@ -287,33 +287,37 @@ async function startScannerForSearch() {
 document.addEventListener('DOMContentLoaded', () => {
     const scanBarcodeBtn = document.getElementById('scanBarcodeBtn');
     if (scanBarcodeBtn) {
-        scanBarcodeBtn.onclick = () => startBarcodeScanner('medBarcode');
+        scanBarcodeBtn.addEventListener('click', () => startBarcodeScanner('medBarcode'));
+        scanBarcodeBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startBarcodeScanner('medBarcode'); });
     }
     
     const scanBarcodeGenBtn = document.getElementById('scanBarcodeGenBtn');
     if (scanBarcodeGenBtn) {
-        scanBarcodeGenBtn.onclick = () => startBarcodeScanner('genBarcode');
+        scanBarcodeGenBtn.addEventListener('click', () => startBarcodeScanner('genBarcode'));
+        scanBarcodeGenBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startBarcodeScanner('genBarcode'); });
     }
     
     const homeBarcodeBtn = document.getElementById('homeBarcodeBtn');
     if (homeBarcodeBtn) {
-        homeBarcodeBtn.onclick = () => startScannerForSearch();
+        homeBarcodeBtn.addEventListener('click', () => startScannerForSearch());
+        homeBarcodeBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startScannerForSearch(); });
     }
     
     const barcodeSearchBtn = document.getElementById('barcodeSearchBtn');
     if (barcodeSearchBtn) {
-        barcodeSearchBtn.onclick = () => startScannerForSearch();
+        barcodeSearchBtn.addEventListener('click', () => startScannerForSearch());
+        barcodeSearchBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startScannerForSearch(); });
     }
     
     const closeScannerModal = document.getElementById('closeScannerModal');
-    if (closeScannerModal) closeScannerModal.onclick = stopScannerAndClose;
+    if (closeScannerModal) closeScannerModal.addEventListener('click', stopScannerAndClose);
     
     const cancelScannerBtn = document.getElementById('cancelScannerBtn');
-    if (cancelScannerBtn) cancelScannerBtn.onclick = stopScannerAndClose;
+    if (cancelScannerBtn) cancelScannerBtn.addEventListener('click', stopScannerAndClose);
     
     const manualBarcodeBtn = document.getElementById('manualBarcodeBtn');
     if (manualBarcodeBtn) {
-        manualBarcodeBtn.onclick = () => {
+        manualBarcodeBtn.addEventListener('click', () => {
             const barcode = prompt('أدخل الباركود يدويًا:');
             if (barcode && barcode.trim()) {
                 if (currentTargetInputId) {
@@ -335,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
-        };
+        });
     }
 });
 
