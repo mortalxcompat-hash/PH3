@@ -2633,22 +2633,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     const scanBarcodeBtn = document.getElementById('scanBarcodeBtn');
     const scanBarcodeGenBtn = document.getElementById('scanBarcodeGenBtn');
     
-    if (notifBtn) notifBtn.addEventListener('click', () => switchPage('inbox'));
-    if (settingsBtn) settingsBtn.addEventListener('click', () => openSettingsModal());
-    if (headerBackBtn) headerBackBtn.addEventListener('click', () => window.handleBackButton());
-    if (appTitle) appTitle.addEventListener('click', () => window.goHome());
-    if (homeBarcodeBtn) homeBarcodeBtn.addEventListener('click', () => window.startScannerForSearch());
-    if (barcodeSearchBtn) barcodeSearchBtn.addEventListener('click', () => window.startScannerForSearch());
-    if (scanBarcodeBtn) scanBarcodeBtn.addEventListener('click', () => startBarcodeScanner('medBarcode'));
-    if (scanBarcodeGenBtn) scanBarcodeGenBtn.addEventListener('click', () => startBarcodeScanner('genBarcode'));
-    
-    const allHeaderBtns = document.querySelectorAll('.app-header .header-btn');
-    allHeaderBtns.forEach(btn => {
-        btn.addEventListener('touchstart', (e) => {
-            btn.style.opacity = '0.7';
-            setTimeout(() => { btn.style.opacity = '1'; }, 100);
-        });
-    });
+    if (notifBtn) {
+        notifBtn.addEventListener('click', () => switchPage('inbox'));
+        notifBtn.addEventListener('touchstart', (e) => { e.preventDefault(); switchPage('inbox'); });
+    }
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => openSettingsModal());
+        settingsBtn.addEventListener('touchstart', (e) => { e.preventDefault(); openSettingsModal(); });
+    }
+    if (headerBackBtn) {
+        headerBackBtn.addEventListener('click', () => window.handleBackButton());
+        headerBackBtn.addEventListener('touchstart', (e) => { e.preventDefault(); window.handleBackButton(); });
+    }
+    if (appTitle) {
+        appTitle.addEventListener('click', () => window.goHome());
+        appTitle.addEventListener('touchstart', (e) => { e.preventDefault(); window.goHome(); });
+    }
+    if (homeBarcodeBtn) {
+        homeBarcodeBtn.addEventListener('click', () => window.startScannerForSearch());
+        homeBarcodeBtn.addEventListener('touchstart', (e) => { e.preventDefault(); window.startScannerForSearch(); });
+    }
+    if (barcodeSearchBtn) {
+        barcodeSearchBtn.addEventListener('click', () => window.startScannerForSearch());
+        barcodeSearchBtn.addEventListener('touchstart', (e) => { e.preventDefault(); window.startScannerForSearch(); });
+    }
+    if (scanBarcodeBtn) {
+        scanBarcodeBtn.addEventListener('click', () => startBarcodeScanner('medBarcode'));
+        scanBarcodeBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startBarcodeScanner('medBarcode'); });
+    }
+    if (scanBarcodeGenBtn) {
+        scanBarcodeGenBtn.addEventListener('click', () => startBarcodeScanner('genBarcode'));
+        scanBarcodeGenBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startBarcodeScanner('genBarcode'); });
+    }
 
     const submitMed = document.getElementById('submitMedBtn');
     if (submitMed) submitMed.onclick = saveMedFromForm;
